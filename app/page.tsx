@@ -418,21 +418,16 @@ function Hero() {
           </motion.div>
         </div>
 
-        {/* RIGHT — Artist image: full-bleed, no frame, no badge */}
+        {/* RIGHT — Artist image: full-bleed, seamless blend */}
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.6, delay: 0.1, ease: EASE_OUT }}
-          className="relative flex-shrink-0 self-stretch hidden lg:flex items-end"
+          className="relative flex-shrink-0 self-stretch flex items-end lg:items-stretch"
           style={{ y: imageY }}
         >
-          {/*
-            Image column is position:relative, stretches full section height.
-            The photo bleeds top-to-bottom with no clipping frame.
-            Left and bottom edges dissolve into the page bg via gradients.
-          */}
           <div
             className="relative w-full h-full"
-            style={{ width: "clamp(280px,30vw,480px)", minHeight: "100%" }}
+            style={{ width: "clamp(280px,38vw,520px)", minHeight: "clamp(420px,70vh,800px)" }}
           >
             <Image
               src="/artista.png"
@@ -440,28 +435,28 @@ function Hero() {
               fill
               className="object-cover object-top"
               style={{ zIndex: 1 }}
-              sizes="(max-width:1280px) 30vw, 480px"
+              sizes="(max-width:768px) 80vw, (max-width:1280px) 38vw, 520px"
               priority
             />
 
-            {/* Left edge: dissolve into bg so image blends seamlessly */}
-            <div aria-hidden className="absolute inset-y-0 left-0 z-[2]" style={{ width: "35%", background: "linear-gradient(to right,#080808 0%,transparent 100%)" }} />
+            {/* LEFT — strong dissolve into bg */}
+            <div aria-hidden className="absolute inset-y-0 left-0 z-[2]" style={{ width: "45%", background: "linear-gradient(to right,#080808 0%,rgba(8,8,4,0.7) 40%,transparent 100%)" }} />
+            {/* RIGHT — dissolve right edge */}
+            <div aria-hidden className="absolute inset-y-0 right-0 z-[2]" style={{ width: "20%", background: "linear-gradient(to left,#080808 0%,transparent 100%)" }} />
+            {/* BOTTOM — fade into page */}
+            <div aria-hidden className="absolute bottom-0 inset-x-0 z-[2]" style={{ height: "32%", background: "linear-gradient(to top,#080808 0%,rgba(8,8,4,0.5) 55%,transparent 100%)" }} />
+            {/* TOP — fade into nav */}
+            <div aria-hidden className="absolute top-0 inset-x-0 z-[2]" style={{ height: "18%", background: "linear-gradient(to bottom,#080808 0%,transparent 100%)" }} />
 
-            {/* Bottom edge: fade into page floor */}
-            <div aria-hidden className="absolute bottom-0 inset-x-0 z-[2]" style={{ height: "28%", background: "linear-gradient(to top,#080808 0%,rgba(8,8,4,.4) 60%,transparent 100%)" }} />
-
-            {/* Top edge: subtle fade for natural entry */}
-            <div aria-hidden className="absolute top-0 inset-x-0 z-[2]" style={{ height: "15%", background: "linear-gradient(to bottom,#080808 0%,transparent 100%)" }} />
-
-            {/* Ambient warm glow matching photo's stage light */}
-            <div aria-hidden className="absolute inset-0 z-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 60% 50% at 80% 25%,rgba(201,137,42,.06) 0%,transparent 70%)" }} />
+            {/* Warm glow overlay to match hero bg light */}
+            <div aria-hidden className="absolute inset-0 z-[3] pointer-events-none" style={{ background: "radial-gradient(ellipse 70% 50% at 75% 20%,rgba(180,100,20,.08) 0%,transparent 70%)" }} />
           </div>
         </motion.div>
       </div>
 
-      {/* Bottom bar — scroll hint only, no stats */}
+      {/* Bottom bar */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.9, duration: 0.8 }}
-        className="relative z-10 mx-auto max-w-7xl w-full px-5 sm:px-8 pb-7 flex items-center justify-between"
+        className="relative z-10 mx-auto max-w-7xl w-full px-5 sm:px-8 pb-7 flex items-center"
       >
         <div className="flex items-center gap-2.5 text-white/18">
           <motion.span animate={{ y: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} className="text-xs">↓</motion.span>
