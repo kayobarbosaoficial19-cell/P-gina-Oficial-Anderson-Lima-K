@@ -318,10 +318,10 @@ function Hero() {
       <div aria-hidden className="absolute left-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.06] to-transparent hidden lg:block" />
 
       {/* Content grid */}
-      <div className="relative z-10 mx-auto max-w-7xl w-full px-5 sm:px-8 pt-36 pb-16 flex-1 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-16 items-end">
+      <div className="relative z-10 mx-auto max-w-7xl w-full px-5 sm:px-8 pt-36 pb-0 flex-1 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-0 items-stretch">
 
         {/* LEFT */}
-        <div className="flex flex-col justify-end">
+        <div className="flex flex-col justify-end pb-16">
 
           <motion.div custom={0.2} initial="hidden" animate="visible" variants={fadeUp}>
             <Eyebrow>Artista Sertanejo</Eyebrow>
@@ -418,51 +418,54 @@ function Hero() {
           </motion.div>
         </div>
 
-        {/* RIGHT — Artist image */}
+        {/* RIGHT — Artist image: full-bleed, no frame, no badge */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.97 }} animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.4, delay: 0.15, ease: EASE_OUT }}
-          className="relative flex-shrink-0 self-end hidden lg:block"
+          initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.6, delay: 0.1, ease: EASE_OUT }}
+          className="relative flex-shrink-0 self-stretch hidden lg:flex items-end"
           style={{ y: imageY }}
         >
-          <div aria-hidden className="absolute -top-3 -right-3 w-full h-full border border-white/[0.05] pointer-events-none" />
-          <div className="relative overflow-hidden" style={{ width: "clamp(220px,26vw,420px)", height: "clamp(320px,50vh,660px)" }}>
-            <div aria-hidden className="absolute inset-0 z-0" style={{ background: "radial-gradient(ellipse 70% 62% at 50% 30%,rgba(190,120,45,.2) 0%,transparent 68%)" }} />
-            <div aria-hidden className="absolute bottom-0 left-1/2 -translate-x-1/2 z-[2]" style={{ width: "80%", height: "56px", background: "radial-gradient(ellipse 100% 100% at 50% 100%,rgba(0,0,0,.75) 0%,transparent 100%)", filter: "blur(11px)" }} />
-            <Image src="/artista.png" alt="Anderson Lima" fill className="object-cover object-top" style={{ zIndex: 1 }} sizes="(max-width:1280px) 26vw, 420px" priority />
-            <div aria-hidden className="absolute bottom-0 inset-x-0 z-[3]" style={{ height: "40%", background: "linear-gradient(to top,#080808 0%,rgba(8,8,4,.55) 58%,transparent 100%)" }} />
-            <motion.div
-              initial={{ opacity: 0, x: 18 }} animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.5, duration: 0.7, ease: EASE_OUT }}
-              className="absolute bottom-5 left-3 right-3 z-[4] bg-black/70 backdrop-blur-md border border-white/[0.07] px-4 py-3 flex items-center justify-between"
-            >
-              <div>
-                <p className="font-body text-[8px] tracking-[0.22em] uppercase text-white/28 mb-0.5">Novo Single</p>
-                <p className="font-display italic text-white text-sm">"Poeira do Sertão"</p>
-              </div>
-              <button aria-label="Reproduzir" className="w-9 h-9 rounded-full border border-white/16 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300">
-                <svg width="9" height="9" viewBox="0 0 10 10" fill="currentColor" className="ml-0.5"><polygon points="2,1 9,5 2,9" /></svg>
-              </button>
-            </motion.div>
+          {/*
+            Image column is position:relative, stretches full section height.
+            The photo bleeds top-to-bottom with no clipping frame.
+            Left and bottom edges dissolve into the page bg via gradients.
+          */}
+          <div
+            className="relative w-full h-full"
+            style={{ width: "clamp(280px,30vw,480px)", minHeight: "100%" }}
+          >
+            <Image
+              src="/artista.png"
+              alt="Anderson Lima"
+              fill
+              className="object-cover object-top"
+              style={{ zIndex: 1 }}
+              sizes="(max-width:1280px) 30vw, 480px"
+              priority
+            />
+
+            {/* Left edge: dissolve into bg so image blends seamlessly */}
+            <div aria-hidden className="absolute inset-y-0 left-0 z-[2]" style={{ width: "35%", background: "linear-gradient(to right,#080808 0%,transparent 100%)" }} />
+
+            {/* Bottom edge: fade into page floor */}
+            <div aria-hidden className="absolute bottom-0 inset-x-0 z-[2]" style={{ height: "28%", background: "linear-gradient(to top,#080808 0%,rgba(8,8,4,.4) 60%,transparent 100%)" }} />
+
+            {/* Top edge: subtle fade for natural entry */}
+            <div aria-hidden className="absolute top-0 inset-x-0 z-[2]" style={{ height: "15%", background: "linear-gradient(to bottom,#080808 0%,transparent 100%)" }} />
+
+            {/* Ambient warm glow matching photo's stage light */}
+            <div aria-hidden className="absolute inset-0 z-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 60% 50% at 80% 25%,rgba(201,137,42,.06) 0%,transparent 70%)" }} />
           </div>
         </motion.div>
       </div>
 
-      {/* Bottom bar */}
+      {/* Bottom bar — scroll hint only, no stats */}
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.9, duration: 0.8 }}
         className="relative z-10 mx-auto max-w-7xl w-full px-5 sm:px-8 pb-7 flex items-center justify-between"
       >
         <div className="flex items-center gap-2.5 text-white/18">
           <motion.span animate={{ y: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} className="text-xs">↓</motion.span>
           <span className="font-body text-[9px] tracking-[0.26em] uppercase">Scroll</span>
-        </div>
-        <div className="flex items-center gap-5">
-          {[{ num: "12+", label: "Shows em 2025" }, { num: "3M", label: "Streams" }].map(({ num, label }) => (
-            <div key={label} className="text-right">
-              <p className="font-display text-xl text-white/68">{num}</p>
-              <p className="font-body text-[8px] tracking-[0.2em] uppercase text-white/20">{label}</p>
-            </div>
-          ))}
         </div>
       </motion.div>
     </section>
