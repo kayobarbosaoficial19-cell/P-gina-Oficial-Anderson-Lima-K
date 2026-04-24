@@ -325,177 +325,200 @@ function Navbar() {
 function Hero() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
 
   useParticles("hero-particles");
 
   return (
-    <section id="hero" ref={ref} className="relative min-h-screen w-full overflow-hidden flex flex-col" aria-label="Hero">
+    <section
+      id="hero"
+      ref={ref}
+      className="relative min-h-screen w-full overflow-hidden flex flex-col"
+      aria-label="Hero"
+    >
+      {/* ── Page background ── */}
+      <div aria-hidden className="absolute inset-0 z-0" style={{ background: "#080808" }} />
 
-      {/* Background layers */}
-      <div aria-hidden className="absolute inset-0 z-0" style={{ background: "linear-gradient(135deg,#0a0704 0%,#080808 45%,#0d0a06 100%)" }} />
-      <div aria-hidden className="absolute inset-0 z-0" style={{ background: "radial-gradient(ellipse 55% 80% at 82% 38%,rgba(180,110,40,.14) 0%,transparent 65%),radial-gradient(ellipse 40% 60% at 64% 62%,rgba(120,70,20,.09) 0%,transparent 55%)" }} />
-      <div aria-hidden className="absolute inset-0 z-0" style={{ background: "radial-gradient(ellipse 50% 100% at 0% 50%,rgba(0,0,0,.62) 0%,transparent 70%)" }} />
-      <div aria-hidden className="pointer-events-none absolute inset-0 z-0" style={{ background: "radial-gradient(ellipse 100% 100% at 50% 50%,transparent 38%,rgba(0,0,0,.74) 100%)" }} />
-      <canvas id="hero-particles" aria-hidden className="absolute inset-0 z-0 pointer-events-none opacity-40 w-full h-full" style={{ mixBlendMode: "screen" }} />
-      <div aria-hidden className="absolute left-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.06] to-transparent hidden lg:block" />
-
-      {/* Content grid */}
-      <div className="relative z-10 mx-auto max-w-7xl w-full px-5 sm:px-8 pt-36 pb-0 flex-1 grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-10 lg:gap-0 items-stretch">
-
-        {/* LEFT */}
-        <div className="flex flex-col justify-end pb-16">
-
-          <motion.div custom={0.2} initial="hidden" animate="visible" variants={fadeUp}>
-            <Eyebrow>Artista Sertanejo</Eyebrow>
-          </motion.div>
-
-          {/*
-            EDITORIAL TITLE PATTERN:
-            Line 1 — first name in Playfair italic, small, muted (signature feel)
-            Line 2 — surname ALL-CAPS, massive, full white (brand mark)
-            This contrast is the technique used by luxury fashion brands.
-          */}
-          <div style={{ perspective: "900px" }}>
-            <motion.h1
-              variants={titleContainer} initial="hidden" animate="visible"
-              className="font-display leading-[0.86]" aria-label="Anderson Lima"
-            >
-              <div className="overflow-hidden block">
-                <motion.span variants={titleWord} className="block" style={{ transformStyle: "preserve-3d" }}>
-                  <span className="text-[clamp(2.6rem,7.5vw,7.5rem)] font-hand font-semibold italic uppercase text-white/55 tracking-[0.05em]">
-                    Anderson
-                  </span>
-                </motion.span>
-              </div>
-              <div className="overflow-hidden block">
-                <motion.span variants={titleWord} className="block" style={{ transformStyle: "preserve-3d" }}>
-                  <span className="text-[clamp(5rem,17.5vw,17rem)] font-display font-black text-white tracking-[-0.025em]">
-                    LIMA
-                  </span>
-                </motion.span>
-              </div>
-            </motion.h1>
-          </div>
-
-          {/* Divider */}
-          <motion.hr custom={1.05} initial="hidden" animate="visible" variants={fadeUp}
-            className="border-none h-px my-7 w-3/5"
-            style={{ background: "linear-gradient(90deg,transparent,rgba(255,255,255,.11),transparent)" }}
+      {/* ── ARTIST IMAGE — absolute, right side desktop / full bg mobile ── */}
+      <motion.div
+        aria-hidden
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+        transition={{ duration: 1.8, delay: 0.1, ease: EASE_OUT }}
+        className="absolute inset-0 z-[1]"
+        style={{ y: imageY }}
+      >
+        {/* Image sits right-aligned on desktop, centered on mobile */}
+        <div
+          className="absolute top-0 bottom-0"
+          style={{
+            right: 0,
+            width: "clamp(320px, 52vw, 780px)",
+          }}
+        >
+          <Image
+            src="/artista.png"
+            alt="Anderson Lima"
+            fill
+            priority
+            className="object-cover object-top"
+            sizes="(max-width: 768px) 100vw, 52vw"
           />
 
-          {/* Bio paragraphs */}
-          <motion.div custom={1.25} initial="hidden" animate="visible" variants={fadeUp} className="space-y-3 max-w-md">
-            {BIO_PARAGRAPHS.map((p, i) => (
-              <p key={i} className="font-body font-light text-[12.5px] text-white/37 leading-relaxed">{p}</p>
-            ))}
-          </motion.div>
-
-          {/* Social CTAs — WA + IG + YT */}
-          <motion.div custom={1.5} initial="hidden" animate="visible" variants={fadeUp}
-            className="flex flex-col sm:flex-row gap-3 mt-9 w-full max-w-lg"
-          >
-            {/* WhatsApp */}
-            <a
-              href="https://wa.me/5518997619075" target="_blank" rel="noopener noreferrer"
-              className="group relative flex items-center gap-3 px-5 py-4 overflow-hidden transition-all duration-400 flex-1"
-              style={{ background: `rgba(201,137,42,0.08)`, border: `1px solid ${AMBER_BORDER}` }}
-            >
-              <span aria-hidden className="absolute inset-0 translate-x-[-110%] group-hover:translate-x-[110%] transition-transform duration-700 skew-x-12 pointer-events-none"
-                style={{ background: `linear-gradient(90deg,transparent,rgba(201,137,42,0.14),transparent)` }} />
-              <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
-                style={{ boxShadow: `inset 0 0 32px ${AMBER_GLOW}` }} />
-              <span className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-                style={{ border: `1px solid ${AMBER_BORDER}`, background: "rgba(201,137,42,0.08)" }}>
-                <Phone size={13} strokeWidth={1.5} style={{ color: AMBER }} />
-              </span>
-              <div className="relative z-10">
-                <p className="font-body text-[8px] tracking-[0.22em] uppercase text-white/28 group-hover:text-white/48 transition-colors">Solicite um Orçamento</p>
-                <p className="font-hand italic text-xl font-semibold group-hover:brightness-125 transition-all" style={{ color: AMBER }}>WhatsApp</p>
-              </div>
-            </a>
-
-            {/* Instagram */}
-            <a
-              href="https://www.instagram.com/andersonlima_oficial/" target="_blank" rel="noopener noreferrer"
-              className="group relative flex items-center gap-3 border border-white/[0.06] hover:border-white/18 px-5 py-4 overflow-hidden transition-all duration-300 flex-1"
-              style={{ background: "rgba(255,255,255,0.018)" }}
-            >
-              <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-[0.07] transition-opacity duration-400 pointer-events-none" style={{ background: IG_GRADIENT }} />
-              <span className="relative z-10 w-8 h-8 rounded-full border border-white/10 group-hover:border-transparent flex items-center justify-center flex-shrink-0 overflow-hidden transition-all duration-300">
-                <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: IG_GRADIENT }} />
-                <Instagram size={13} strokeWidth={1.5} className="relative z-10 text-pink-400/70 group-hover:text-white transition-colors duration-300" />
-              </span>
-              <div className="relative z-10">
-                <p className="font-body text-[8px] tracking-[0.22em] uppercase text-white/28 group-hover:text-white/48 transition-colors">Acompanhe</p>
-                <p className="font-hand italic text-xl font-semibold text-white/62 group-hover:text-white transition-colors">@andersonlima</p>
-              </div>
-            </a>
-
-            {/* YouTube */}
-            <a
-              href="https://youtube.com/@andersonlima2026cantor?si=isGLS2bBTczdFczA" target="_blank" rel="noopener noreferrer"
-              className="group relative flex items-center gap-3 border border-white/[0.06] hover:border-red-500/30 px-5 py-4 overflow-hidden transition-all duration-300 flex-1"
-              style={{ background: "rgba(255,255,255,0.018)" }}
-            >
-              <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-[0.07] transition-opacity duration-400 pointer-events-none" style={{ background: "linear-gradient(135deg,#ff0000,#cc0000)" }} />
-              <span className="relative z-10 w-8 h-8 rounded-full border border-white/10 group-hover:border-transparent flex items-center justify-center flex-shrink-0 overflow-hidden transition-all duration-300">
-                <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "linear-gradient(135deg,#ff0000,#cc0000)" }} />
-                <Youtube size={13} strokeWidth={1.5} className="relative z-10 text-red-400/70 group-hover:text-white transition-colors duration-300" />
-              </span>
-              <div className="relative z-10">
-                <p className="font-body text-[8px] tracking-[0.22em] uppercase text-white/28 group-hover:text-white/48 transition-colors">Assista</p>
-                <p className="font-hand italic text-xl font-semibold text-white/62 group-hover:text-white transition-colors">YouTube</p>
-              </div>
-            </a>
-          </motion.div>
+          {/* LEFT edge — strong fade into page bg (hides black border) */}
+          <div aria-hidden className="absolute inset-y-0 left-0 z-10" style={{
+            width: "55%",
+            background: "linear-gradient(to right, #080808 0%, rgba(8,8,8,0.85) 35%, rgba(8,8,8,0.4) 65%, transparent 100%)"
+          }} />
+          {/* TOP edge */}
+          <div aria-hidden className="absolute top-0 inset-x-0 z-10" style={{
+            height: "22%",
+            background: "linear-gradient(to bottom, #080808 0%, rgba(8,8,8,0.7) 50%, transparent 100%)"
+          }} />
+          {/* BOTTOM edge */}
+          <div aria-hidden className="absolute bottom-0 inset-x-0 z-10" style={{
+            height: "30%",
+            background: "linear-gradient(to top, #080808 0%, rgba(8,8,8,0.7) 50%, transparent 100%)"
+          }} />
+          {/* RIGHT edge */}
+          <div aria-hidden className="absolute inset-y-0 right-0 z-10" style={{
+            width: "12%",
+            background: "linear-gradient(to left, #080808 0%, transparent 100%)"
+          }} />
         </div>
 
-        {/* RIGHT — Artist image: full-bleed, seamless blend */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.6, delay: 0.1, ease: EASE_OUT }}
-          className="relative flex-shrink-0 self-stretch flex items-end lg:items-stretch"
-          style={{ y: imageY }}
-        >
-          <div
-            className="relative w-full h-full"
-            style={{ width: "clamp(280px,38vw,520px)", minHeight: "clamp(420px,70vh,800px)" }}
-          >
-            <Image
-              src="/artista.png"
-              alt="Anderson Lima"
-              fill
-              className="object-cover object-top"
-              style={{ zIndex: 1 }}
-              sizes="(max-width:768px) 80vw, (max-width:1280px) 38vw, 520px"
-              priority
-            />
+        {/* Mobile: extra overlay so text stays readable */}
+        <div aria-hidden className="absolute inset-0 z-20 lg:hidden" style={{
+          background: "linear-gradient(to right, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.75) 50%, rgba(8,8,8,0.5) 100%)"
+        }} />
+        {/* Desktop: left-side text area darkening */}
+        <div aria-hidden className="absolute inset-0 z-20 hidden lg:block" style={{
+          background: "linear-gradient(to right, rgba(8,8,8,1) 0%, rgba(8,8,8,0.96) 30%, rgba(8,8,8,0.5) 55%, transparent 75%)"
+        }} />
+      </motion.div>
 
-            {/* LEFT — strong dissolve into bg */}
-            <div aria-hidden className="absolute inset-y-0 left-0 z-[2]" style={{ width: "45%", background: "linear-gradient(to right,#080808 0%,rgba(8,8,4,0.7) 40%,transparent 100%)" }} />
-            {/* RIGHT — dissolve right edge */}
-            <div aria-hidden className="absolute inset-y-0 right-0 z-[2]" style={{ width: "20%", background: "linear-gradient(to left,#080808 0%,transparent 100%)" }} />
-            {/* BOTTOM — fade into page */}
-            <div aria-hidden className="absolute bottom-0 inset-x-0 z-[2]" style={{ height: "32%", background: "linear-gradient(to top,#080808 0%,rgba(8,8,4,0.5) 55%,transparent 100%)" }} />
-            {/* TOP — fade into nav */}
-            <div aria-hidden className="absolute top-0 inset-x-0 z-[2]" style={{ height: "18%", background: "linear-gradient(to bottom,#080808 0%,transparent 100%)" }} />
+      {/* ── Warm cinematic light from right ── */}
+      <div aria-hidden className="absolute inset-0 z-[2] pointer-events-none" style={{
+        background: "radial-gradient(ellipse 45% 70% at 85% 35%, rgba(180,110,40,0.12) 0%, transparent 65%)"
+      }} />
 
-            {/* Warm glow overlay to match hero bg light */}
-            <div aria-hidden className="absolute inset-0 z-[3] pointer-events-none" style={{ background: "radial-gradient(ellipse 70% 50% at 75% 20%,rgba(180,100,20,.08) 0%,transparent 70%)" }} />
-          </div>
+      {/* ── Particles ── */}
+      <canvas id="hero-particles" aria-hidden className="absolute inset-0 z-[2] pointer-events-none opacity-35 w-full h-full" style={{ mixBlendMode: "screen" }} />
+
+      {/* ── Vignette ── */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-[2]" style={{
+        background: "radial-gradient(ellipse 100% 100% at 50% 50%, transparent 40%, rgba(0,0,0,0.65) 100%)"
+      }} />
+
+      {/* ── Left vertical rule desktop ── */}
+      <div aria-hidden className="absolute left-10 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/[0.06] to-transparent hidden lg:block z-[3]" />
+
+      {/* ── CONTENT — always on top ── */}
+      <div className="relative z-[10] flex-1 flex flex-col justify-end mx-auto max-w-7xl w-full px-5 sm:px-8 pt-32 pb-10">
+
+        <motion.div custom={0.2} initial="hidden" animate="visible" variants={fadeUp}>
+          <Eyebrow>Artista Sertanejo</Eyebrow>
         </motion.div>
-      </div>
 
-      {/* Bottom bar */}
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.9, duration: 0.8 }}
-        className="relative z-10 mx-auto max-w-7xl w-full px-5 sm:px-8 pb-7 flex items-center"
-      >
-        <div className="flex items-center gap-2.5 text-white/18">
+        {/* Title */}
+        <div style={{ perspective: "900px" }}>
+          <motion.h1
+            variants={titleContainer} initial="hidden" animate="visible"
+            className="font-display leading-[0.86]" aria-label="Anderson Lima"
+          >
+            <div className="overflow-hidden block">
+              <motion.span variants={titleWord} className="block" style={{ transformStyle: "preserve-3d" }}>
+                <span className="text-[clamp(2.4rem,6.5vw,7rem)] font-hand font-semibold italic text-white/55 tracking-[0.04em]">
+                  Anderson
+                </span>
+              </motion.span>
+            </div>
+            <div className="overflow-hidden block">
+              <motion.span variants={titleWord} className="block" style={{ transformStyle: "preserve-3d" }}>
+                <span className="text-[clamp(5rem,16vw,16rem)] font-display font-black text-white tracking-[-0.025em]">
+                  LIMA
+                </span>
+              </motion.span>
+            </div>
+          </motion.h1>
+        </div>
+
+        {/* Divider */}
+        <motion.hr custom={1.05} initial="hidden" animate="visible" variants={fadeUp}
+          className="border-none h-px my-6 w-full max-w-sm"
+          style={{ background: "linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent)" }}
+        />
+
+        {/* Bio */}
+        <motion.div custom={1.25} initial="hidden" animate="visible" variants={fadeUp}
+          className="space-y-2.5 max-w-sm"
+        >
+          {BIO_PARAGRAPHS.map((p, i) => (
+            <p key={i} className="font-body font-light text-[12px] text-white/40 leading-relaxed">{p}</p>
+          ))}
+        </motion.div>
+
+        {/* Social CTAs — WA + IG + YT — stack on mobile, row on desktop */}
+        <motion.div custom={1.5} initial="hidden" animate="visible" variants={fadeUp}
+          className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-8 w-full max-w-xl"
+        >
+          {/* WhatsApp */}
+          <a href="https://wa.me/5518997619075" target="_blank" rel="noopener noreferrer"
+            className="group relative flex items-center gap-3 px-4 py-3.5 overflow-hidden transition-all duration-400"
+            style={{ background: `rgba(201,137,42,0.08)`, border: `1px solid ${AMBER_BORDER}` }}
+          >
+            <span aria-hidden className="absolute inset-0 translate-x-[-110%] group-hover:translate-x-[110%] transition-transform duration-700 skew-x-12 pointer-events-none"
+              style={{ background: `linear-gradient(90deg,transparent,rgba(201,137,42,0.15),transparent)` }} />
+            <span className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0"
+              style={{ border: `1px solid ${AMBER_BORDER}`, background: "rgba(201,137,42,0.1)" }}>
+              <Phone size={12} strokeWidth={1.5} style={{ color: AMBER }} />
+            </span>
+            <div className="relative z-10 min-w-0">
+              <p className="font-body text-[7.5px] tracking-[0.22em] uppercase text-white/28">Orçamento</p>
+              <p className="font-hand italic text-lg font-semibold leading-tight" style={{ color: AMBER }}>WhatsApp</p>
+            </div>
+          </a>
+
+          {/* Instagram */}
+          <a href="https://www.instagram.com/andersonlima_oficial/" target="_blank" rel="noopener noreferrer"
+            className="group relative flex items-center gap-3 px-4 py-3.5 overflow-hidden transition-all duration-300"
+            style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)" }}
+          >
+            <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-[0.08] transition-opacity duration-400 pointer-events-none" style={{ background: IG_GRADIENT }} />
+            <span className="relative z-10 w-7 h-7 rounded-full border border-white/10 group-hover:border-transparent flex items-center justify-center flex-shrink-0 overflow-hidden transition-all duration-300">
+              <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: IG_GRADIENT }} />
+              <Instagram size={12} strokeWidth={1.5} className="relative z-10 text-pink-400/70 group-hover:text-white transition-colors" />
+            </span>
+            <div className="relative z-10 min-w-0">
+              <p className="font-body text-[7.5px] tracking-[0.22em] uppercase text-white/28">Acompanhe</p>
+              <p className="font-hand italic text-lg font-semibold leading-tight text-white/65 group-hover:text-white transition-colors">Instagram</p>
+            </div>
+          </a>
+
+          {/* YouTube */}
+          <a href="https://youtube.com/@andersonlima2026cantor?si=isGLS2bBTczdFczA" target="_blank" rel="noopener noreferrer"
+            className="group relative flex items-center gap-3 px-4 py-3.5 overflow-hidden transition-all duration-300"
+            style={{ background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.07)" }}
+          >
+            <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-[0.08] transition-opacity duration-400 pointer-events-none" style={{ background: "linear-gradient(135deg,#ff0000,#cc0000)" }} />
+            <span className="relative z-10 w-7 h-7 rounded-full border border-white/10 group-hover:border-transparent flex items-center justify-center flex-shrink-0 overflow-hidden transition-all duration-300">
+              <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "linear-gradient(135deg,#ff0000,#cc0000)" }} />
+              <Youtube size={12} strokeWidth={1.5} className="relative z-10 text-red-400/70 group-hover:text-white transition-colors" />
+            </span>
+            <div className="relative z-10 min-w-0">
+              <p className="font-body text-[7.5px] tracking-[0.22em] uppercase text-white/28">Assista</p>
+              <p className="font-hand italic text-lg font-semibold leading-tight text-white/65 group-hover:text-white transition-colors">YouTube</p>
+            </div>
+          </a>
+        </motion.div>
+
+        {/* Scroll hint */}
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.9, duration: 0.8 }}
+          className="flex items-center gap-2.5 text-white/20 mt-10"
+        >
           <motion.span animate={{ y: [0, 5, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} className="text-xs">↓</motion.span>
           <span className="font-body text-[9px] tracking-[0.26em] uppercase">Scroll</span>
-        </div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
   );
 }
