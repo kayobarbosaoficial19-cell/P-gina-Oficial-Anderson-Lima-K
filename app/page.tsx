@@ -218,21 +218,6 @@ function Navbar() {
             transition={{ delay: 0.55, duration: 0.6 }}
             className="hidden md:flex items-center gap-3"
           >
-            {/* Instagram — gradient accent */}
-            <a
-              href="https://www.instagram.com/andersonlima_oficial/"
-              target="_blank" rel="noopener noreferrer"
-              aria-label="Instagram @andersonlima_oficial"
-              className="group relative inline-flex items-center gap-2 px-4 py-2 overflow-hidden transition-all duration-300"
-              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
-            >
-              <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: IG_GRADIENT }} />
-              <Instagram size={13} strokeWidth={1.5} className="relative z-10 text-pink-400/80 group-hover:text-white transition-colors duration-300" />
-              <span className="relative z-10 font-body text-[9px] tracking-[0.18em] uppercase text-white/40 group-hover:text-white transition-colors duration-300">
-                Instagram
-              </span>
-            </a>
-
             {/* YouTube — red accent */}
             <a
               href="https://youtube.com/@andersonlima2026cantor?si=isGLS2bBTczdFczA"
@@ -245,6 +230,21 @@ function Navbar() {
               <Youtube size={13} strokeWidth={1.5} className="relative z-10 text-red-400/80 group-hover:text-white transition-colors duration-300" />
               <span className="relative z-10 font-body text-[9px] tracking-[0.18em] uppercase text-white/40 group-hover:text-white transition-colors duration-300">
                 YouTube
+              </span>
+            </a>
+
+            {/* Instagram — gradient accent */}
+            <a
+              href="https://www.instagram.com/andersonlima_oficial/"
+              target="_blank" rel="noopener noreferrer"
+              aria-label="Instagram @andersonlima_oficial"
+              className="group relative inline-flex items-center gap-2 px-4 py-2 overflow-hidden transition-all duration-300"
+              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
+            >
+              <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: IG_GRADIENT }} />
+              <Instagram size={13} strokeWidth={1.5} className="relative z-10 text-pink-400/80 group-hover:text-white transition-colors duration-300" />
+              <span className="relative z-10 font-body text-[9px] tracking-[0.18em] uppercase text-white/40 group-hover:text-white transition-colors duration-300">
+                Instagram
               </span>
             </a>
 
@@ -363,8 +363,8 @@ function Hero() {
             >
               <div className="overflow-hidden block">
                 <motion.span variants={titleWord} className="block" style={{ transformStyle: "preserve-3d" }}>
-                  <span className="text-[clamp(2.8rem,8vw,8rem)] font-hand font-normal text-white/38">
-                    anderson
+                  <span className="text-[clamp(2.8rem,8vw,8rem)] font-hand font-bold text-white/38 uppercase tracking-wide">
+                    Anderson
                   </span>
                 </motion.span>
               </div>
@@ -415,7 +415,7 @@ function Hero() {
               </span>
               <div className="relative z-10">
                 <p className="font-body text-[8.5px] tracking-[0.22em] uppercase text-white/28 group-hover:text-white/48 transition-colors">Solicite um Orçamento</p>
-                <p className="font-display italic text-sm group-hover:brightness-125 transition-all" style={{ color: AMBER }}>WhatsApp</p>
+                <p className="font-hand text-lg font-bold uppercase tracking-wide group-hover:brightness-125 transition-all" style={{ color: AMBER }}>WhatsApp</p>
               </div>
             </a>
 
@@ -435,7 +435,7 @@ function Hero() {
               </span>
               <div className="relative z-10">
                 <p className="font-body text-[8.5px] tracking-[0.22em] uppercase text-white/28 group-hover:text-white/48 transition-colors">Acompanhe</p>
-                <p className="font-display italic text-white/62 group-hover:text-white text-sm transition-colors">@andersonlima_oficial</p>
+                <p className="font-hand text-lg font-bold uppercase tracking-wide text-white/62 group-hover:text-white transition-colors">@Andersonlima_Oficial</p>
               </div>
             </a>
           </motion.div>
@@ -510,8 +510,8 @@ function Services() {
           <Eyebrow>O que ofereço</Eyebrow>
           {/* Editorial heading: italic qualifier + uppercase noun */}
           <h2 className="font-display leading-[0.88]" aria-label="Serviços">
-            <span className="block text-[clamp(1.2rem,3vw,2.8rem)] font-normal italic text-white/30">
-              o que faço
+            <span className="block text-[clamp(1.4rem,3.5vw,3.2rem)] font-hand font-bold uppercase text-white/30">
+              O Que Faço
             </span>
             <span className="block text-[clamp(3.5rem,9vw,9rem)] font-black text-white tracking-[-0.025em]">
               SERVIÇOS
@@ -553,7 +553,7 @@ function Services() {
         >
           <div>
             <p className="font-display leading-tight">
-              <span className="block text-sm font-normal italic text-white/30">pronto para</span>
+              <span className="block text-[clamp(1.1rem,2.5vw,1.8rem)] font-hand font-bold uppercase text-white/30">Pronto Para</span>
               <span className="block text-2xl sm:text-3xl font-black text-white tracking-tight">CONTRATAR?</span>
             </p>
             <p className="font-body font-light text-sm text-white/32 mt-1.5">Entre em contato e monte o show perfeito para o seu evento.</p>
