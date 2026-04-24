@@ -1,12 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans, Caveat } from "next/font/google";
-
-const caveat = Caveat({
-  subsets: ["latin"],
-  variable: "--font-caveat",
-  weight: ["400", "700"],
-  display: "swap",
-});
+import { Playfair_Display, DM_Sans, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -24,10 +17,17 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-cormorant",
+  weight: ["300", "400", "600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Anderson Lima — Artista Sertanejo",
-  description:
-    "Shows, eventos e orçamentos com Anderson Lima, artista sertanejo da região de Assis — SP.",
+  description: "Shows, eventos e orçamentos com Anderson Lima, artista sertanejo da região de Assis — SP.",
   openGraph: {
     title: "Anderson Lima — Artista Sertanejo",
     description: "A voz que carrega o cheiro de terra molhada e o peso do coração partido.",
@@ -39,8 +39,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-BR" className="scroll-smooth">
-      <body className={`${playfair.variable} ${dmSans.variable} ${caveat.variable} bg-[#080808] text-white antialiased overflow-x-hidden`}>
-        {/* Grain texture */}
+      <body className={`${playfair.variable} ${dmSans.variable} ${cormorant.variable} bg-[#080808] text-white antialiased overflow-x-hidden`}>
         <div
           aria-hidden="true"
           className="pointer-events-none fixed inset-0 z-[1] opacity-[0.032]"

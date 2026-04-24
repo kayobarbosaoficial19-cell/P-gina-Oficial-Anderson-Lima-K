@@ -363,7 +363,7 @@ function Hero() {
             >
               <div className="overflow-hidden block">
                 <motion.span variants={titleWord} className="block" style={{ transformStyle: "preserve-3d" }}>
-                  <span className="text-[clamp(2.8rem,8vw,8rem)] font-hand font-bold text-white/38 uppercase tracking-wide">
+                  <span className="text-[clamp(2.6rem,7.5vw,7.5rem)] font-hand font-semibold italic uppercase text-white/55 tracking-[0.05em]">
                     Anderson
                   </span>
                 </motion.span>
@@ -391,31 +391,27 @@ function Hero() {
             ))}
           </motion.div>
 
-          {/* Social CTAs */}
+          {/* Social CTAs — WA + IG + YT */}
           <motion.div custom={1.5} initial="hidden" animate="visible" variants={fadeUp}
-            className="flex flex-col sm:flex-row gap-3 mt-9 w-full max-w-md"
+            className="flex flex-col sm:flex-row gap-3 mt-9 w-full max-w-lg"
           >
-            {/* WhatsApp — amber primary */}
+            {/* WhatsApp */}
             <a
               href="https://wa.me/5518997619075" target="_blank" rel="noopener noreferrer"
               className="group relative flex items-center gap-3 px-5 py-4 overflow-hidden transition-all duration-400 flex-1"
               style={{ background: `rgba(201,137,42,0.08)`, border: `1px solid ${AMBER_BORDER}` }}
             >
-              <span aria-hidden
-                className="absolute inset-0 translate-x-[-110%] group-hover:translate-x-[110%] transition-transform duration-700 skew-x-12 pointer-events-none"
-                style={{ background: `linear-gradient(90deg,transparent,rgba(201,137,42,0.14),transparent)` }}
-              />
-              <span aria-hidden
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
-                style={{ boxShadow: `inset 0 0 32px ${AMBER_GLOW}` }}
-              />
-              <span className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-300"
+              <span aria-hidden className="absolute inset-0 translate-x-[-110%] group-hover:translate-x-[110%] transition-transform duration-700 skew-x-12 pointer-events-none"
+                style={{ background: `linear-gradient(90deg,transparent,rgba(201,137,42,0.14),transparent)` }} />
+              <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
+                style={{ boxShadow: `inset 0 0 32px ${AMBER_GLOW}` }} />
+              <span className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
                 style={{ border: `1px solid ${AMBER_BORDER}`, background: "rgba(201,137,42,0.08)" }}>
                 <Phone size={13} strokeWidth={1.5} style={{ color: AMBER }} />
               </span>
               <div className="relative z-10">
-                <p className="font-body text-[8.5px] tracking-[0.22em] uppercase text-white/28 group-hover:text-white/48 transition-colors">Solicite um Orçamento</p>
-                <p className="font-hand text-lg font-bold uppercase tracking-wide group-hover:brightness-125 transition-all" style={{ color: AMBER }}>WhatsApp</p>
+                <p className="font-body text-[8px] tracking-[0.22em] uppercase text-white/28 group-hover:text-white/48 transition-colors">Solicite um Orçamento</p>
+                <p className="font-hand italic text-xl font-semibold group-hover:brightness-125 transition-all" style={{ color: AMBER }}>WhatsApp</p>
               </div>
             </a>
 
@@ -425,17 +421,31 @@ function Hero() {
               className="group relative flex items-center gap-3 border border-white/[0.06] hover:border-white/18 px-5 py-4 overflow-hidden transition-all duration-300 flex-1"
               style={{ background: "rgba(255,255,255,0.018)" }}
             >
-              <span aria-hidden
-                className="absolute inset-0 opacity-0 group-hover:opacity-[0.07] transition-opacity duration-400 pointer-events-none"
-                style={{ background: IG_GRADIENT }}
-              />
-              <span className="relative z-10 w-8 h-8 rounded-full border border-white/10 group-hover:border-transparent flex items-center justify-center flex-shrink-0 transition-all duration-300 overflow-hidden">
+              <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-[0.07] transition-opacity duration-400 pointer-events-none" style={{ background: IG_GRADIENT }} />
+              <span className="relative z-10 w-8 h-8 rounded-full border border-white/10 group-hover:border-transparent flex items-center justify-center flex-shrink-0 overflow-hidden transition-all duration-300">
                 <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: IG_GRADIENT }} />
                 <Instagram size={13} strokeWidth={1.5} className="relative z-10 text-pink-400/70 group-hover:text-white transition-colors duration-300" />
               </span>
               <div className="relative z-10">
-                <p className="font-body text-[8.5px] tracking-[0.22em] uppercase text-white/28 group-hover:text-white/48 transition-colors">Acompanhe</p>
-                <p className="font-hand text-lg font-bold uppercase tracking-wide text-white/62 group-hover:text-white transition-colors">@Andersonlima_Oficial</p>
+                <p className="font-body text-[8px] tracking-[0.22em] uppercase text-white/28 group-hover:text-white/48 transition-colors">Acompanhe</p>
+                <p className="font-hand italic text-xl font-semibold text-white/62 group-hover:text-white transition-colors">@andersonlima</p>
+              </div>
+            </a>
+
+            {/* YouTube */}
+            <a
+              href="https://youtube.com/@andersonlima2026cantor?si=isGLS2bBTczdFczA" target="_blank" rel="noopener noreferrer"
+              className="group relative flex items-center gap-3 border border-white/[0.06] hover:border-red-500/30 px-5 py-4 overflow-hidden transition-all duration-300 flex-1"
+              style={{ background: "rgba(255,255,255,0.018)" }}
+            >
+              <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-[0.07] transition-opacity duration-400 pointer-events-none" style={{ background: "linear-gradient(135deg,#ff0000,#cc0000)" }} />
+              <span className="relative z-10 w-8 h-8 rounded-full border border-white/10 group-hover:border-transparent flex items-center justify-center flex-shrink-0 overflow-hidden transition-all duration-300">
+                <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "linear-gradient(135deg,#ff0000,#cc0000)" }} />
+                <Youtube size={13} strokeWidth={1.5} className="relative z-10 text-red-400/70 group-hover:text-white transition-colors duration-300" />
+              </span>
+              <div className="relative z-10">
+                <p className="font-body text-[8px] tracking-[0.22em] uppercase text-white/28 group-hover:text-white/48 transition-colors">Assista</p>
+                <p className="font-hand italic text-xl font-semibold text-white/62 group-hover:text-white transition-colors">YouTube</p>
               </div>
             </a>
           </motion.div>
@@ -510,8 +520,8 @@ function Services() {
           <Eyebrow>O que ofereço</Eyebrow>
           {/* Editorial heading: italic qualifier + uppercase noun */}
           <h2 className="font-display leading-[0.88]" aria-label="Serviços">
-            <span className="block text-[clamp(1.4rem,3.5vw,3.2rem)] font-hand font-bold uppercase text-white/30">
-              O Que Faço
+            <span className="block text-[clamp(1.4rem,3.5vw,3.2rem)] font-hand italic font-semibold text-white/32">
+              O que faço
             </span>
             <span className="block text-[clamp(3.5rem,9vw,9rem)] font-black text-white tracking-[-0.025em]">
               SERVIÇOS
@@ -553,7 +563,7 @@ function Services() {
         >
           <div>
             <p className="font-display leading-tight">
-              <span className="block text-[clamp(1.1rem,2.5vw,1.8rem)] font-hand font-bold uppercase text-white/30">Pronto Para</span>
+              <span className="block text-[clamp(1.1rem,2.5vw,1.8rem)] font-hand italic font-semibold text-white/30">Pronto para</span>
               <span className="block text-2xl sm:text-3xl font-black text-white tracking-tight">CONTRATAR?</span>
             </p>
             <p className="font-body font-light text-sm text-white/32 mt-1.5">Entre em contato e monte o show perfeito para o seu evento.</p>
