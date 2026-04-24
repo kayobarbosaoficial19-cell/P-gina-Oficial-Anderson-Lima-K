@@ -18,6 +18,7 @@ import {
   Sparkles,
   Navigation,
   Music4,
+  Youtube,
 } from "lucide-react";
 
 /* ──────────────────────────────────────────────────────────
@@ -185,12 +186,12 @@ function Navbar() {
       >
         <div className="mx-auto max-w-7xl px-5 sm:px-8 flex items-center justify-between gap-6">
 
-          {/* Logo — bg-white container fixes white-on-white logo issue */}
+          {/* Logo */}
           <a href="#hero" aria-label="Anderson Lima" className="flex items-center gap-3 group flex-shrink-0">
-            <span className="relative w-9 h-9 rounded-full bg-white overflow-hidden flex-shrink-0 ring-1 ring-white/20 group-hover:ring-white/50 transition-all duration-300 group-hover:shadow-[0_0_16px_rgba(255,255,255,0.18)]">
-              <Image src="/logo-anderson.png" alt="Anderson Lima" fill className="object-contain p-0.5" sizes="36px" />
+            <span className="relative w-12 h-12 rounded-full bg-white overflow-hidden flex-shrink-0 ring-1 ring-white/20 group-hover:ring-white/50 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+              <Image src="/logo-anderson.png" alt="Anderson Lima" fill className="object-cover" sizes="48px" />
             </span>
-            <span className="font-display text-[10.5px] tracking-[0.24em] uppercase text-white/68 group-hover:text-white transition-colors hidden sm:block">
+            <span className="font-display text-[11px] tracking-[0.22em] uppercase text-white/70 group-hover:text-white transition-colors hidden sm:block">
               Anderson Lima
             </span>
           </a>
@@ -229,6 +230,21 @@ function Navbar() {
               <Instagram size={13} strokeWidth={1.5} className="relative z-10 text-pink-400/80 group-hover:text-white transition-colors duration-300" />
               <span className="relative z-10 font-body text-[9px] tracking-[0.18em] uppercase text-white/40 group-hover:text-white transition-colors duration-300">
                 Instagram
+              </span>
+            </a>
+
+            {/* YouTube — red accent */}
+            <a
+              href="https://youtube.com/@andersonlima2026cantor?si=isGLS2bBTczdFczA"
+              target="_blank" rel="noopener noreferrer"
+              aria-label="YouTube Anderson Lima"
+              className="group relative inline-flex items-center gap-2 px-4 py-2 overflow-hidden transition-all duration-300"
+              style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}
+            >
+              <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "linear-gradient(135deg,#ff0000,#cc0000)" }} />
+              <Youtube size={13} strokeWidth={1.5} className="relative z-10 text-red-400/80 group-hover:text-white transition-colors duration-300" />
+              <span className="relative z-10 font-body text-[9px] tracking-[0.18em] uppercase text-white/40 group-hover:text-white transition-colors duration-300">
+                YouTube
               </span>
             </a>
 
@@ -273,7 +289,7 @@ function Navbar() {
                 {link.label}
               </a>
             ))}
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-3 pt-2 flex-wrap">
               <a href="https://www.instagram.com/andersonlima_oficial/" target="_blank" rel="noopener noreferrer"
                 className="group relative flex items-center gap-2 px-4 py-2.5 overflow-hidden"
                 style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
@@ -281,8 +297,15 @@ function Navbar() {
                 <Instagram size={14} strokeWidth={1.5} className="relative z-10 text-pink-400/70 group-hover:text-white transition-colors" />
                 <span className="relative z-10 font-body text-[9px] tracking-widest uppercase text-white/40 group-hover:text-white transition-colors">Instagram</span>
               </a>
+              <a href="https://youtube.com/@andersonlima2026cantor?si=isGLS2bBTczdFczA" target="_blank" rel="noopener noreferrer"
+                className="group relative flex items-center gap-2 px-4 py-2.5 overflow-hidden"
+                style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)" }}>
+                <span aria-hidden className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "linear-gradient(135deg,#ff0000,#cc0000)" }} />
+                <Youtube size={14} strokeWidth={1.5} className="relative z-10 text-red-400/70 group-hover:text-white transition-colors" />
+                <span className="relative z-10 font-body text-[9px] tracking-widest uppercase text-white/40 group-hover:text-white transition-colors">YouTube</span>
+              </a>
               <a href="https://wa.me/5518997619075" target="_blank" rel="noopener noreferrer"
-                className="ml-auto flex items-center gap-2 px-4 py-2.5"
+                className="flex items-center gap-2 px-4 py-2.5"
                 style={{ background: `rgba(201,137,42,0.1)`, border: `1px solid ${AMBER_BORDER}` }}>
                 <Phone size={13} strokeWidth={1.5} style={{ color: AMBER }} />
                 <span className="font-body text-[9px] tracking-widest uppercase" style={{ color: AMBER }}>Orçamento</span>
@@ -340,7 +363,7 @@ function Hero() {
             >
               <div className="overflow-hidden block">
                 <motion.span variants={titleWord} className="block" style={{ transformStyle: "preserve-3d" }}>
-                  <span className="text-[clamp(2.2rem,6.5vw,6.5rem)] font-display italic font-normal text-white/35">
+                  <span className="text-[clamp(2.8rem,8vw,8rem)] font-hand font-normal text-white/38">
                     anderson
                   </span>
                 </motion.span>
@@ -574,7 +597,7 @@ function Footer() {
             <span className="font-display text-[10.5px] tracking-[0.2em] uppercase text-white/58">Anderson Lima</span>
           </div>
           <p className="font-body font-light text-[11.5px] text-white/26 leading-relaxed max-w-[220px]">
-            Artista Sertanejo da região de Assis — SP. Música que toca a alma.
+            Do coração do sertão para o seu evento — viola, emoção e tradição.
           </p>
         </div>
 
@@ -596,6 +619,11 @@ function Footer() {
             className="group inline-flex items-center gap-2 font-body text-xs text-white/32 hover:text-white transition-colors">
             <Instagram size={12} strokeWidth={1.5} className="text-pink-400/70" />
             @andersonlima_oficial
+          </a>
+          <a href="https://youtube.com/@andersonlima2026cantor?si=isGLS2bBTczdFczA" target="_blank" rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 font-body text-xs text-white/32 hover:text-white transition-colors">
+            <Youtube size={12} strokeWidth={1.5} className="text-red-400/70" />
+            @andersonlima2026cantor
           </a>
         </div>
       </div>
